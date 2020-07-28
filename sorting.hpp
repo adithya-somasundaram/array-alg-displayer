@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-void selectionSort(std::vector<double> arr, int len);
-void bubbleSort(std::vector<double> arr, int len);
+void selectionSort(std::vector<double> arr, int len, bool notTest);
+void bubbleSort(std::vector<double> arr, int len, bool notTest);
 
 #endif
