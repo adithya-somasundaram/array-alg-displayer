@@ -1,3 +1,10 @@
+/************************************************
+*
+*   main.cpp - holds user input and main method
+*   Adithya Somasundaram, 7/29/2020
+*
+*************************************************/
+
 #include "sorting.hpp"
 
 #include <iostream>

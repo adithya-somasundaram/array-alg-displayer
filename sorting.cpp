@@ -1,3 +1,10 @@
+/*********************************************************
+*
+*   sorting.cpp - holds sorting methods and their helpers
+*   Adithya Somasundaram, 7/29/2020
+*
+**********************************************************/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
