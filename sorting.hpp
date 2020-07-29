@@ -6,5 +6,6 @@
 
 void selectionSort(std::vector<double> arr, int len, bool notTest);
 void bubbleSort(std::vector<double> arr, int len, bool notTest);
+void insertionSort(std::vector<double> arr, int len, bool notTest);
 
 #endif

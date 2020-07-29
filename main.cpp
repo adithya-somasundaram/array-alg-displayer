@@ -10,18 +10,23 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    vector<double> selectionArr(argc - 1);
-    vector<double> bubbleArr(argc - 1);
+    vector<double> original(argc - 1);
+    vector<double> copy_arr(argc - 1);
 
     for (int i = 1; i < argc; i++)
     {
-        stringstream(argv[i]) >> selectionArr[i - 1];
+        stringstream(argv[i]) >> original[i - 1];
     }
-    copy(begin(selectionArr),end(selectionArr),bubbleArr.begin());
+    copy(begin(original),end(original),copy_arr.begin());
 
     cout << endl;
-    selectionSort(selectionArr, argc - 1, true);
-    bubbleSort(bubbleArr, argc - 1, true);
+    // selectionSort(copy_arr, argc - 1, true);
+    // copy(begin(original),end(original),copy_arr.begin());
+
+    // bubbleSort(copy_arr, argc - 1, true);
+    // copy(begin(original),end(original),copy_arr.begin());
+
+    insertionSort(copy_arr, argc-1,true);
 
     return EXIT_SUCCESS;
 }

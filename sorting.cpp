@@ -117,6 +117,52 @@ void bubbleSort(std::vector<double> arr, int len, bool notTest){
     }
 }
 
+void insertionSort(std::vector<double> arr, int len, bool notTest){
+    if(notTest){
+        myfile.open ("insertionSort.txt");
+        myfile << "*** INSERTION SORT ***" << endl;
+        myfile << "Inputted array: ";
+        write(myfile,arr,len);
+        myfile << endl;
+        cout << "*** INSERTION SORT ***" << endl;
+        cout << "Inputted array: ";
+        print(arr, len);
+        cout << endl;
+    }
+
+    int i, copy;
+
+    for(i = 1; i < len; i++){
+        if(notTest){
+            cout << i << ": ";
+            myfile << endl << "Pass " << i << ": ";
+        } 
+        copy = i;
+        while(arr[copy] < arr[copy-1]){
+            if(notTest){
+                myfile << "Swapping " << arr[copy] << " and " << arr[copy-1] << " : ";
+                write(myfile,arr,len);
+                myfile << endl;
+            }
+            swap(arr,copy,copy-1);
+            copy = copy-1;
+        }
+        if(notTest){
+            print(arr,len);
+            cout << endl;
+        }
+    }
+    if(notTest){
+        cout << "Final sorted array: ";
+        print(arr,len);
+        cout << endl << endl;
+        myfile << endl << endl << "Final sorted array: ";
+        write(myfile,arr,len);
+        myfile << endl << "Runtime: O(n^2)";
+        myfile.close();
+    }
+}
+
 /* Helper functions */
 void print(vector<double> in, int len)
 {
