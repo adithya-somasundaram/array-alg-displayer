@@ -149,14 +149,15 @@ void insertionSort(std::vector<double> arr, int len, bool notTest){
         }
         if(notTest){
             print(arr,len);
-            cout << endl;
+            cout << " | Sorted up to index " << i << endl;
+            myfile << "Sorted up to index " << i << endl;
         }
     }
     if(notTest){
         cout << "Final sorted array: ";
         print(arr,len);
         cout << endl << endl;
-        myfile << endl << endl << "Final sorted array: ";
+        myfile << endl << "Final sorted array: ";
         write(myfile,arr,len);
         myfile << endl << "Runtime: O(n^2)";
         myfile.close();
