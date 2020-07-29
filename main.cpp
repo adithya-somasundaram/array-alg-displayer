@@ -20,11 +20,11 @@ int main(int argc, char *argv[])
     copy(begin(original),end(original),copy_arr.begin());
 
     cout << endl;
-    // selectionSort(copy_arr, argc - 1, true);
-    // copy(begin(original),end(original),copy_arr.begin());
+    selectionSort(copy_arr, argc - 1, true);
+    copy(begin(original),end(original),copy_arr.begin());
 
-    // bubbleSort(copy_arr, argc - 1, true);
-    // copy(begin(original),end(original),copy_arr.begin());
+    bubbleSort(copy_arr, argc - 1, true);
+    copy(begin(original),end(original),copy_arr.begin());
 
     insertionSort(copy_arr, argc-1,true);
 
