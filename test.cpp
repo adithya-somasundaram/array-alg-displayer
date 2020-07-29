@@ -18,7 +18,7 @@
 
 using namespace std;
 
-void print(vector<double> in, int len);
+// void print(vector<double> in, int len);
 
 int main(){
 
@@ -57,7 +57,7 @@ int main(){
     local_score = 0;
 
     // insertion sort tests
-    insertionSort(test1,7,true);
+    insertionSort(test1,7,false);
     if(test1 == test1Res){
         local_score++;
         score++;

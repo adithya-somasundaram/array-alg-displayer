@@ -145,7 +145,7 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
             myfile << endl << "Pass " << i << ": ";
         } 
         copy = i;
-        while(arr[copy] < arr[copy-1]){
+        while(arr[copy] < arr[copy-1] && copy > 0){
             if(notTest){
                 myfile << "Swapping " << arr[copy] << " and " << arr[copy-1] << " : ";
                 write(myfile,arr,len);
