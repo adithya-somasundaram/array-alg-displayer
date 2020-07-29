@@ -17,7 +17,7 @@ void swap(vector<double> &in, int a, int b);
 
 ofstream myfile;
 
-void selectionSort(std::vector<double> arr, int len, bool notTest)
+void selectionSort(std::vector<double> &arr, int len, bool notTest)
 {
     // initial prints and writes
     if(notTest){
@@ -75,7 +75,7 @@ void selectionSort(std::vector<double> arr, int len, bool notTest)
     }
 }
 
-void bubbleSort(std::vector<double> arr, int len, bool notTest){
+void bubbleSort(std::vector<double> &arr, int len, bool notTest){
     // initial prints and writes
     if(notTest){
         myfile.open ("bubbleSort.txt");
@@ -124,7 +124,7 @@ void bubbleSort(std::vector<double> arr, int len, bool notTest){
     }
 }
 
-void insertionSort(std::vector<double> arr, int len, bool notTest){
+void insertionSort(std::vector<double> &arr, int len, bool notTest){
     if(notTest){
         myfile.open ("insertionSort.txt");
         myfile << "*** INSERTION SORT ***" << endl;
