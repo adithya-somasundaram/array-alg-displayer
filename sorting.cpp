@@ -146,12 +146,12 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
         } 
         copy = i;
         while(arr[copy] < arr[copy-1] && copy > 0){
+            swap(arr,copy,copy-1);
             if(notTest){
-                myfile << "Swapping " << arr[copy] << " and " << arr[copy-1] << " : ";
+                myfile << "Swapped " << arr[copy] << " and " << arr[copy-1] << " : ";
                 write(myfile,arr,len);
                 myfile << endl;
             }
-            swap(arr,copy,copy-1);
             copy = copy-1;
         }
         if(notTest){
