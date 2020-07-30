@@ -172,17 +172,23 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
     }
 }
 
-void mergeSort(std::vector<double> &arr, int left, int right, bool notTest){
-    // print(arr, left, right+1);
-    // cout << " " << left  <<" "<< right<< endl;
+void mergeSort(std::vector<double> &arr, int left, int right, bool notTest, int level){
+    if(notTest){
+        cout << "Level: " << level << ", Index: [" << left  <<", "<< right <<"]: ";
+        print(arr, left, right+1);
+        cout<< endl;
+    }
     if(right > left){
         int mid = (left + right)/2;
-        mergeSort(arr, left, mid, notTest);
-        mergeSort(arr, mid+1, right, notTest);
+        mergeSort(arr, left, mid, notTest, level+1);
+        mergeSort(arr, mid+1, right, notTest, level + 1);
         merge(arr, left, right, notTest);
     }
-    print(arr, left, right+1);
-    cout << endl;
+    if(notTest){
+        cout << " Post merge Level: " << level << ", Index: [" << left  <<", "<< right <<"]: ";
+        print(arr, left, right+1);
+        cout<< endl;
+    }
 }
 
 /* Helper functions */

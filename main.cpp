@@ -26,15 +26,19 @@ int main(int argc, char *argv[])
     }
     copy(begin(original),end(original),copy_arr.begin());
 
-    // cout << endl;
-    // selectionSort(copy_arr, argc - 1, true);
-    // copy(begin(original),end(original),copy_arr.begin());
+    cout << endl;
+    selectionSort(copy_arr, argc - 1, true);
+    copy(begin(original),end(original),copy_arr.begin());
 
-    // bubbleSort(copy_arr, argc - 1, true);
-    // copy(begin(original),end(original),copy_arr.begin());
+    bubbleSort(copy_arr, argc - 1, true);
+    copy(begin(original),end(original),copy_arr.begin());
 
-    // insertionSort(copy_arr, argc-1,true);
-    mergeSort(copy_arr, 0, argc-2, false);
+    insertionSort(copy_arr, argc-1,true);
+    copy(begin(original),end(original),copy_arr.begin());
+
+    cout << "*** MERGE SORT ***" <<endl;
+    mergeSort(copy_arr, 0, argc-2, true, 0);
+    copy(begin(original),end(original),copy_arr.begin());
 
     return EXIT_SUCCESS;
 }
