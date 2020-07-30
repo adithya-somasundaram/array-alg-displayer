@@ -11,9 +11,10 @@
 
 using namespace std;
 
-void print(vector<double> in, int len);
+void print(vector<double> in, int start, int len);
 void write(ofstream &file, vector<double> in, int len);
 void swap(vector<double> &in, int a, int b);
+void merge(vector<double> &arr, int left, int right, bool notTest);
 
 ofstream myfile;
 
@@ -28,7 +29,7 @@ void selectionSort(std::vector<double> &arr, int len, bool notTest)
         myfile << endl<<endl;
         cout << "*** SELECTION SORT ***" << endl;
         cout << "Inputted array: ";
-        print(arr, len);
+        print(arr, 0, len);
         cout << endl;
     }
 
@@ -49,7 +50,7 @@ void selectionSort(std::vector<double> &arr, int len, bool notTest)
             swap(arr, i, min);
             
             if(notTest){
-                print(arr, len);
+                print(arr, 0, len);
                 cout << " Swapped " << arr[i] << " with " << arr[min] << endl;
                 write(myfile,arr,len);
                 myfile << "| " << arr[min] << " is the largest element, so we swapped it to current index " << i << endl;
@@ -66,7 +67,7 @@ void selectionSort(std::vector<double> &arr, int len, bool notTest)
     // final prints and writes
     if(notTest){
         cout << "Final sorted array: ";
-        print(arr,len);
+        print(arr, 0, len);
         cout << endl << endl;
         myfile << endl << "Final sorted array: ";
         write(myfile,arr,len);
@@ -85,7 +86,7 @@ void bubbleSort(std::vector<double> &arr, int len, bool notTest){
         myfile << endl;
         cout << "*** BUBBLE SORT ***" << endl;
         cout << "Inputted array: ";
-        print(arr, len);
+        print(arr, 0, len);
         cout << endl;
     }
 
@@ -107,7 +108,7 @@ void bubbleSort(std::vector<double> &arr, int len, bool notTest){
             }
         }
         if(notTest){
-            print(arr,len);
+            print(arr, 0, len);
             cout << endl;
         }
     }
@@ -115,7 +116,7 @@ void bubbleSort(std::vector<double> &arr, int len, bool notTest){
     // final prints and writes
     if(notTest){
         cout << "Final sorted array: ";
-        print(arr,len);
+        print(arr, 0, len);
         cout << endl << endl;
         myfile << endl << endl << "Final sorted array: ";
         write(myfile,arr,len);
@@ -133,7 +134,7 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
         myfile << endl;
         cout << "*** INSERTION SORT ***" << endl;
         cout << "Inputted array: ";
-        print(arr, len);
+        print(arr, 0, len);
         cout << endl;
     }
 
@@ -155,14 +156,14 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
             copy = copy-1;
         }
         if(notTest){
-            print(arr,len);
+            print(arr, 0, len);
             cout << " | Sorted up to index " << i << endl;
             myfile << "Sorted up to index " << i << endl;
         }
     }
     if(notTest){
         cout << "Final sorted array: ";
-        print(arr,len);
+        print(arr, 0, len);
         cout << endl << endl;
         myfile << endl << "Final sorted array: ";
         write(myfile,arr,len);
@@ -171,10 +172,23 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
     }
 }
 
+void mergeSort(std::vector<double> &arr, int left, int right, bool notTest){
+    // print(arr, left, right+1);
+    // cout << " " << left  <<" "<< right<< endl;
+    if(right > left){
+        int mid = (left + right)/2;
+        mergeSort(arr, left, mid, notTest);
+        mergeSort(arr, mid+1, right, notTest);
+        merge(arr, left, right, notTest);
+    }
+    print(arr, left, right+1);
+    cout << endl;
+}
+
 /* Helper functions */
-void print(vector<double> in, int len)
+void print(vector<double> in, int start, int len)
 {
-    for (int a = 0; a < len; a++)
+    for (int a = start; a < len; a++)
     {
         cout << in[a] << " ";
     }
@@ -192,4 +206,48 @@ void swap(vector<double> &in, int a, int b)
     double temp = in[a];
     in[a] = in[b];
     in[b] = temp;
+}
+
+void merge(vector<double> &arr, int left, int right, bool notTest){
+    
+    int i,j = 0,k = 0;
+
+    int mid = (left+right)/2;
+    int left_bound = mid - left + 1;
+    int right_bound = right - mid;
+
+    vector<double> l;
+    vector<double> r;
+
+    for(i = 0; i < left_bound; i++){
+        l.push_back(arr[left + i]);
+    }
+    for(i = 0; i < right_bound; i++){
+        r.push_back(arr[mid + i + 1]);
+    }
+
+    i = left;
+
+    while(j < left_bound && k < right_bound){
+        if(l[j] < r[k]){
+            arr[i] = l[j];
+            j++;
+        } else {
+            arr[i] = r[k];
+            k++;
+        }
+        i++;
+    }
+
+    while(j < left_bound){
+        arr[i] = l[j];
+        j++;
+        i++;
+    }
+
+    while(k < right_bound){
+        arr[i] = r[k];
+        k++;
+        i++;
+    }
 }
