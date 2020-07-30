@@ -16,6 +16,8 @@ void write(ofstream &file, vector<double> in, int start, int len);
 void swap(vector<double> &in, int a, int b);
 void merge(vector<double> &arr, int left, int right, bool notTest);
 
+void realMergeSort(std::vector<double> &arr, int left, int right, int level, bool notTest, ofstream &file);
+
 ofstream myfile;
 
 void selectionSort(std::vector<double> &arr, int len, bool notTest)
@@ -172,7 +174,23 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
     }
 }
 
-void mergeSort(std::vector<double> &arr, int left, int right, bool notTest, int level, ofstream &file){
+void mergeSort(std::vector<double> &arr, int len, bool notTest){
+    ofstream myfile;
+    if(notTest){
+        cout << "*** MERGE SORT ***" <<endl;
+        myfile.open ("mergeSort.txt");
+        myfile << "*** MERGE SORT ***" << endl;
+    }
+    realMergeSort(arr, 0, len-1, 0, notTest, myfile);
+    if(notTest){
+        myfile << endl << "Final sorted array: ";
+        write(myfile, arr, 0, len);
+        myfile << endl << "Runtime: O(nlog(n))";
+        myfile.close();
+    }
+}
+
+void realMergeSort(std::vector<double> &arr, int left, int right, int level, bool notTest, ofstream &file){
     if(notTest){
         file << "Level from top: " << level << ", Index: [" << left  <<", "<< right <<"]: ";
         write(file,arr,left,right+1);
@@ -184,8 +202,8 @@ void mergeSort(std::vector<double> &arr, int left, int right, bool notTest, int 
     }
     if(right > left){
         int mid = (left + right)/2;
-        mergeSort(arr, left, mid, notTest, level+1, file);
-        mergeSort(arr, mid+1, right, notTest, level + 1, file);
+        realMergeSort(arr, left, mid, level+1, notTest, file);
+        realMergeSort(arr, mid+1, right, level+1, notTest, file);
         merge(arr, left, right, notTest);
     }
     if(notTest){

@@ -12,7 +12,7 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
-#include <fstream>
+// #include <fstream>
 
 #define TOTAL 4
 #define TESTS 1
@@ -72,8 +72,8 @@ int main(){
     local_score = 0;
 
     // merge sort tests
-    ofstream blank;
-    mergeSort(test1,0,6,false,0,blank);
+    // ofstream blank;
+    mergeSort(test1,7,false);
     if(test1 == test1Res){
         local_score++;
         score++;
