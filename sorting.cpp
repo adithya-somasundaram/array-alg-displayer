@@ -53,7 +53,7 @@ void selectionSort(std::vector<double> &arr, int len, bool notTest)
                 print(arr, 0, len);
                 cout << " Swapped " << arr[i] << " with " << arr[min] << endl;
                 write(myfile,arr,len);
-                myfile << "| " << arr[min] << " is the largest element, so we swapped it to current index " << i << endl;
+                myfile << "| " << arr[i] << " was the smallest element to right of index, so we swapped it to current index " << i << endl;
             }
         } else {
             if(notTest){
