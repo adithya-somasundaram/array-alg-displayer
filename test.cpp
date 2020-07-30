@@ -12,8 +12,9 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <fstream>
 
-#define TOTAL 3
+#define TOTAL 4
 #define TESTS 1
 
 using namespace std;
@@ -63,6 +64,21 @@ int main(){
         score++;
     }
     cout << "Insertion Sort: (" << local_score << "/" << TESTS << ") ";
+    if(local_score == 1) cout << "PASSED";
+    cout << endl;
+
+    // reset vars
+    test1 = {15, 9.7, 12.5, -5, 8, 0, -1.6};
+    local_score = 0;
+
+    // merge sort tests
+    ofstream blank;
+    mergeSort(test1,0,6,false,0,blank);
+    if(test1 == test1Res){
+        local_score++;
+        score++;
+    }
+    cout << "Merge Sort: (" << local_score << "/" << TESTS << ") ";
     if(local_score == 1) cout << "PASSED";
     cout << endl; 
 
