@@ -12,8 +12,10 @@
 #include <algorithm>
 #include <iterator>
 #include <sstream>
+#include <fstream>
 
 using namespace std;
+void write(ofstream &file, vector<double> in, int start, int len);
 
 int main(int argc, char *argv[])
 {
@@ -37,7 +39,14 @@ int main(int argc, char *argv[])
     copy(begin(original),end(original),copy_arr.begin());
 
     cout << "*** MERGE SORT ***" <<endl;
-    mergeSort(copy_arr, 0, argc-2, true, 0);
+    ofstream myfile;
+    myfile.open ("mergeSort.txt");
+    myfile << "*** MERGE SORT ***" << endl;
+    mergeSort(copy_arr, 0, argc-2, true, 0, myfile);
+    myfile << endl << "Final sorted array: ";
+    write(myfile,copy_arr,0,argc-2);
+    myfile << endl << "Runtime: O(n^2)";
+    myfile.close();
     copy(begin(original),end(original),copy_arr.begin());
 
     return EXIT_SUCCESS;

@@ -12,7 +12,7 @@
 using namespace std;
 
 void print(vector<double> in, int start, int len);
-void write(ofstream &file, vector<double> in, int len);
+void write(ofstream &file, vector<double> in, int start, int len);
 void swap(vector<double> &in, int a, int b);
 void merge(vector<double> &arr, int left, int right, bool notTest);
 
@@ -25,7 +25,7 @@ void selectionSort(std::vector<double> &arr, int len, bool notTest)
         myfile.open ("selectionSort.txt");
         myfile << "*** SELECTION SORT ***" << endl;
         myfile << "Inputted array: ";
-        write(myfile,arr,len);
+        write(myfile,arr,0,len);
         myfile << endl<<endl;
         cout << "*** SELECTION SORT ***" << endl;
         cout << "Inputted array: ";
@@ -52,13 +52,13 @@ void selectionSort(std::vector<double> &arr, int len, bool notTest)
             if(notTest){
                 print(arr, 0, len);
                 cout << " Swapped " << arr[i] << " with " << arr[min] << endl;
-                write(myfile,arr,len);
+                write(myfile,arr,0,len);
                 myfile << "| " << arr[i] << " was the smallest element to right of index, so we swapped it to current index " << i << endl;
             }
         } else {
             if(notTest){
                 cout << "Element at index " << i << " is less than elements to right of it -> no changes made" << endl;
-                write(myfile,arr,len);
+                write(myfile,arr,0,len);
                 myfile << "| Element at current index " << i << " is less than elements to right of it -> no changes made" << endl;
             }
         }
@@ -70,7 +70,7 @@ void selectionSort(std::vector<double> &arr, int len, bool notTest)
         print(arr, 0, len);
         cout << endl << endl;
         myfile << endl << "Final sorted array: ";
-        write(myfile,arr,len);
+        write(myfile,arr,0,len);
         myfile << endl << "Runtime: O(n^2)";
         myfile.close();
     }
@@ -82,7 +82,7 @@ void bubbleSort(std::vector<double> &arr, int len, bool notTest){
         myfile.open ("bubbleSort.txt");
         myfile << "*** BUBBLE SORT ***" << endl;
         myfile << "Inputted array: ";
-        write(myfile,arr,len);
+        write(myfile,arr,0,len);
         myfile << endl;
         cout << "*** BUBBLE SORT ***" << endl;
         cout << "Inputted array: ";
@@ -102,7 +102,7 @@ void bubbleSort(std::vector<double> &arr, int len, bool notTest){
                 swap(arr,j,j+1);
                 if(notTest){
                     myfile << "Swapping " << arr[j] << " and " << arr[j+1] << " : ";
-                    write(myfile,arr,len);
+                    write(myfile,arr,0,len);
                     myfile << endl;
                 }
             }
@@ -119,7 +119,7 @@ void bubbleSort(std::vector<double> &arr, int len, bool notTest){
         print(arr, 0, len);
         cout << endl << endl;
         myfile << endl << endl << "Final sorted array: ";
-        write(myfile,arr,len);
+        write(myfile,arr,0,len);
         myfile << endl << "Runtime: O(n^2)";
         myfile.close();
     }
@@ -130,7 +130,7 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
         myfile.open ("insertionSort.txt");
         myfile << "*** INSERTION SORT ***" << endl;
         myfile << "Inputted array: ";
-        write(myfile,arr,len);
+        write(myfile,arr,0,len);
         myfile << endl;
         cout << "*** INSERTION SORT ***" << endl;
         cout << "Inputted array: ";
@@ -150,7 +150,7 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
             swap(arr,copy,copy-1);
             if(notTest){
                 myfile << "Swapped " << arr[copy] << " and " << arr[copy-1] << " : ";
-                write(myfile,arr,len);
+                write(myfile,arr,0,len);
                 myfile << endl;
             }
             copy = copy-1;
@@ -166,25 +166,33 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
         print(arr, 0, len);
         cout << endl << endl;
         myfile << endl << "Final sorted array: ";
-        write(myfile,arr,len);
+        write(myfile,arr,0,len);
         myfile << endl << "Runtime: O(n^2)";
         myfile.close();
     }
 }
 
-void mergeSort(std::vector<double> &arr, int left, int right, bool notTest, int level){
+void mergeSort(std::vector<double> &arr, int left, int right, bool notTest, int level, ofstream &file){
     if(notTest){
+        myfile << "Level from top: " << level << ", Index: [" << left  <<", "<< right <<"]: ";
+        write(myfile,arr,left,right+1);
+        myfile << endl;
+
         cout << "Level: " << level << ", Index: [" << left  <<", "<< right <<"]: ";
         print(arr, left, right+1);
         cout<< endl;
     }
     if(right > left){
         int mid = (left + right)/2;
-        mergeSort(arr, left, mid, notTest, level+1);
-        mergeSort(arr, mid+1, right, notTest, level + 1);
+        mergeSort(arr, left, mid, notTest, level+1, file);
+        mergeSort(arr, mid+1, right, notTest, level + 1, file);
         merge(arr, left, right, notTest);
     }
     if(notTest){
+        myfile << "\tLevel from bottom (now merging): " << level << ", Index: [" << left  <<", "<< right <<"]: ";
+        write(myfile,arr,left,right+1);
+        myfile << endl;
+
         cout << " Post merge Level: " << level << ", Index: [" << left  <<", "<< right <<"]: ";
         print(arr, left, right+1);
         cout<< endl;
@@ -200,8 +208,8 @@ void print(vector<double> in, int start, int len)
     }
 }
 
-void write(ofstream &file, vector<double> in, int len){
-    for (int a = 0; a < len; a++)
+void write(ofstream &file, vector<double> in, int start, int len){
+    for (int a = start; a < len; a++)
     {
         file << in[a] << " ";
     }
