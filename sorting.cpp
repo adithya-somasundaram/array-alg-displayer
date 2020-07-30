@@ -174,9 +174,9 @@ void insertionSort(std::vector<double> &arr, int len, bool notTest){
 
 void mergeSort(std::vector<double> &arr, int left, int right, bool notTest, int level, ofstream &file){
     if(notTest){
-        myfile << "Level from top: " << level << ", Index: [" << left  <<", "<< right <<"]: ";
-        write(myfile,arr,left,right+1);
-        myfile << endl;
+        file << "Level from top: " << level << ", Index: [" << left  <<", "<< right <<"]: ";
+        write(file,arr,left,right+1);
+        file << endl;
 
         cout << "Level: " << level << ", Index: [" << left  <<", "<< right <<"]: ";
         print(arr, left, right+1);
@@ -189,9 +189,9 @@ void mergeSort(std::vector<double> &arr, int left, int right, bool notTest, int 
         merge(arr, left, right, notTest);
     }
     if(notTest){
-        myfile << "\tLevel from bottom (now merging): " << level << ", Index: [" << left  <<", "<< right <<"]: ";
-        write(myfile,arr,left,right+1);
-        myfile << endl;
+        file << "\tLevel from bottom (now merging): " << level << ", Index: [" << left  <<", "<< right <<"]: ";
+        write(file,arr,left,right+1);
+        file << endl;
 
         cout << " Post merge Level: " << level << ", Index: [" << left  <<", "<< right <<"]: ";
         print(arr, left, right+1);

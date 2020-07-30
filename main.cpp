@@ -44,8 +44,8 @@ int main(int argc, char *argv[])
     myfile << "*** MERGE SORT ***" << endl;
     mergeSort(copy_arr, 0, argc-2, true, 0, myfile);
     myfile << endl << "Final sorted array: ";
-    write(myfile,copy_arr,0,argc-2);
-    myfile << endl << "Runtime: O(n^2)";
+    write(myfile,copy_arr,0,argc-1);
+    myfile << endl << "Runtime: O(nlog(n))";
     myfile.close();
     copy(begin(original),end(original),copy_arr.begin());
 
