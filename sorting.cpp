@@ -253,9 +253,11 @@ void realQuickSort(vector<double> &arr, int left, int right, int level, bool not
             }
         }
         print(arr,left,right+1);
+        cout << endl;
         realQuickSort(arr, left, copy_left, level+1, notTest,file);
-        realQuickSort(arr, copy_left, right, level+1, notTest,file);
-    //     print(arr,left,right+1);
+        realQuickSort(arr, copy_left+1, right, level+1, notTest,file);
+        print(arr,left,right+1);
+        cout << endl;
     }
 }
 

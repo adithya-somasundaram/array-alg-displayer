@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
     // mergeSort(copy_arr, argc-1, true);
     // copy(begin(original),end(original),copy_arr.begin());
 
-    // quickSort(copy_arr, argc-1, true);
-    // copy(begin(original),end(original),copy_arr.begin());
+    quickSort(copy_arr, argc-1, true);
+    copy(begin(original),end(original),copy_arr.begin());
 
     return EXIT_SUCCESS;
 }
