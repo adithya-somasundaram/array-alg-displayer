@@ -14,7 +14,6 @@
 #include <sstream>
 
 using namespace std;
-// void write(ofstream &file, vector<double> in, int start, int len);
 
 int main(int argc, char *argv[])
 {
@@ -40,8 +39,8 @@ int main(int argc, char *argv[])
     // mergeSort(copy_arr, argc-1, true);
     // copy(begin(original),end(original),copy_arr.begin());
 
-    quickSort(copy_arr, argc-1, true);
-    copy(begin(original),end(original),copy_arr.begin());
+    // quickSort(copy_arr, argc-1, true);
+    // copy(begin(original),end(original),copy_arr.begin());
 
     return EXIT_SUCCESS;
 }

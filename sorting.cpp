@@ -222,10 +222,10 @@ void quickSort(vector<double> &arr, int len, bool notTest){
     ofstream myfile;
     if(notTest){
         cout << "*** QUICKSORT ***" <<endl;
-        myfile.open ("mergeSort.txt");
+        myfile.open ("quicksort.txt");
         myfile << "*** QUICKSORT ***" << endl;
     }
-    realQuickSort(arr, 0, len, 0, notTest, myfile);
+    realQuickSort(arr, 0, len-1, 0, notTest, myfile);
     if(notTest){
         myfile << endl << "Final sorted array: ";
         write(myfile, arr, 0, len);
@@ -237,7 +237,8 @@ void quickSort(vector<double> &arr, int len, bool notTest){
 void realQuickSort(vector<double> &arr, int left, int right, int level, bool notTest, ofstream &file){
     if(right>left){
         int pivot = (left+right)/2, copy_left = left, copy_right = right;
-        while(copy_right >= copy_left){
+        // cout << pivot << " " << copy_left << " " << copy_right << endl;
+        while(copy_right > copy_left){
             while(arr[pivot] < arr[copy_right]){
                 copy_right--;
             }
@@ -248,11 +249,13 @@ void realQuickSort(vector<double> &arr, int left, int right, int level, bool not
                 swap(arr, copy_left, copy_right);
                 copy_left++;
                 copy_right--;
+                
             }
         }
-        realQuickSort(arr, left, copy_left-1, level+1, notTest,file);
+        print(arr,left,right+1);
+        realQuickSort(arr, left, copy_left, level+1, notTest,file);
         realQuickSort(arr, copy_left, right, level+1, notTest,file);
-        print(arr,left,right);
+    //     print(arr,left,right+1);
     }
 }
 
