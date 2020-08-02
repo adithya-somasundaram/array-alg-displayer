@@ -2,7 +2,7 @@
 *
 *   test.cpp - testing harness for sorting algs
 *   Needs to be compiled with c++11
-*   Adithya Somasundaram, 7/29/2020
+*   Adithya Somasundaram, 8/1/2020
 *
 *************************************************/
 
@@ -19,10 +19,9 @@
 
 using namespace std;
 
-// void print(vector<double> in, int len);
-
 int main(){
 
+    // test vector and test result
     vector<double> test1 = {-5, 9.7, 12.5, 8, 15, 0, -1.6};
     vector<double> test1Res = {-5, -1.6, 0, 8, 9.7, 12.5, 15};
     int score = 0, local_score = 0;
