@@ -6,5 +6,14 @@ not clutter the terminal too much.
 
 
 ## Running the application
-After installation, run:
-  g++ 
+After installation, to create the executable run:
+```
+g++ main.cpp sorting.cpp
+```
+Then to run:
+```
+./a.out [list of doubles seperated by space here]
+```
+Note: Quicksort is an unstable sorting algorithm, and will not always sort correctly based on input.
+
+Last edited: 8/10/2020
